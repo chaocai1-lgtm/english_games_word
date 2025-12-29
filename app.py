@@ -623,27 +623,35 @@ def render_sidebar(game: WordGame = None):
         
         if st.button("🏰 魔塔闯关", use_container_width=True, key="sb_tower"):
             st.session_state.game_mode = "tower_select"
+            st.rerun()
         
         if st.button("🌱 词根探索", use_container_width=True, key="sb_root"):
             st.session_state.game_mode = "root_explore"
+            st.rerun()
         
         if st.button("📖 复习错题", use_container_width=True, key="sb_review"):
             st.session_state.game_mode = "review"
+            st.rerun()
         
         if st.button("⏱️ 限时挑战", use_container_width=True, key="sb_speed"):
             st.session_state.game_mode = "speed_challenge"
+            st.rerun()
         
         if st.button("✍️ 拼写大师", use_container_width=True, key="sb_spelling"):
             st.session_state.game_mode = "spelling"
+            st.rerun()
         
         if st.button("🎁 幸运抽奖", use_container_width=True, key="sb_lucky"):
             st.session_state.game_mode = "lucky_wheel"
+            st.rerun()
         
         if st.button("🏅 成就殿堂", use_container_width=True, key="sb_achieve"):
             st.session_state.game_mode = "achievements"
+            st.rerun()
         
         if st.button("🏠 返回主页", use_container_width=True, key="sb_home"):
             st.session_state.game_mode = "menu"
+            st.rerun()
         
         st.markdown("---")
         st.markdown("### 📚 错题本")
@@ -683,9 +691,11 @@ def render_sidebar(game: WordGame = None):
         with col1:
             if st.button("👨‍👩‍👧 家长", use_container_width=True, key="sb_parent"):
                 st.session_state.game_mode = "parent_login"
+                st.rerun()
         with col2:
             if st.button("👨‍🏫 教师", use_container_width=True, key="sb_teacher"):
                 st.session_state.game_mode = "teacher_login"
+                st.rerun()
 
 
 def render_main_menu(game: WordGame):
@@ -767,12 +777,15 @@ def render_main_menu(game: WordGame):
     with col1:
         if st.button("🏰 魔塔闯关", key="quick_tower", use_container_width=True):
             st.session_state.game_mode = "tower_select"
+            st.rerun()
     with col2:
         if st.button("🌱 词根探索", key="quick_root", use_container_width=True):
             st.session_state.game_mode = "root_explore"
+            st.rerun()
     with col3:
         if st.button("📖 错题复习", key="quick_review", use_container_width=True):
             st.session_state.game_mode = "review"
+            st.rerun()
     
     # 新增玩法入口
     st.markdown("### 🎮 更多玩法")
@@ -788,6 +801,7 @@ def render_main_menu(game: WordGame):
         """, unsafe_allow_html=True)
         if st.button("开始挑战", key="quick_speed", use_container_width=True):
             st.session_state.game_mode = "speed_challenge"
+            st.rerun()
     
     with col2:
         st.markdown("""
@@ -799,6 +813,7 @@ def render_main_menu(game: WordGame):
         """, unsafe_allow_html=True)
         if st.button("开始拼写", key="quick_spell", use_container_width=True):
             st.session_state.game_mode = "spelling"
+            st.rerun()
     
     with col3:
         st.markdown("""
@@ -810,6 +825,7 @@ def render_main_menu(game: WordGame):
         """, unsafe_allow_html=True)
         if st.button("去抽奖", key="quick_lucky", use_container_width=True):
             st.session_state.game_mode = "lucky_wheel"
+            st.rerun()
     
     # 成就展示
     st.markdown("---")
@@ -837,6 +853,7 @@ def render_main_menu(game: WordGame):
         
         if st.button("🏅 查看全部成就", key="view_achievements"):
             st.session_state.game_mode = "achievements"
+            st.rerun()
     else:
         st.info("还没有解锁成就，开始游戏来获取你的第一个成就吧！")
 
@@ -887,12 +904,14 @@ def render_floor_select(game: WordGame):
                             st.session_state.game_mode = "tower"
                             st.session_state.floor_words = []
                             st.session_state.question_index = 0
+                            st.rerun()
     
     st.markdown("---")
     
     # 返回按钮
     if st.button("🏠 返回主页", use_container_width=True, key="floor_back_home"):
         st.session_state.game_mode = "menu"
+        st.rerun()
 
 
 def render_tower_mode(game: WordGame):
@@ -908,6 +927,7 @@ def render_tower_mode(game: WordGame):
             st.session_state.question_index = 0
             st.session_state.current_question = None
             st.session_state.show_result = False
+            st.rerun()
     with col2:
         st.markdown(f"## 🏰 第 {floor} 层挑战")
     with col3:
@@ -953,15 +973,18 @@ def render_tower_mode(game: WordGame):
                 st.session_state.game_mode = "tower_select"
                 st.session_state.floor_words = []
                 st.session_state.question_index = 0
+                st.rerun()
         with col2:
             if floor < 9 and st.button("⬆️ 挑战下一层", use_container_width=True, key="pass_next"):
                 st.session_state.current_floor = floor + 1
                 st.session_state.floor_words = []
                 st.session_state.question_index = 0
+                st.rerun()
         with col3:
             if st.button("🔄 重新挑战本层", use_container_width=True, key="pass_retry"):
                 st.session_state.floor_words = []
                 st.session_state.question_index = 0
+                st.rerun()
         return
     
     # 当前单词
@@ -987,6 +1010,7 @@ def render_tower_mode(game: WordGame):
             st.session_state.question_index += 1
             st.session_state.show_result = False
             st.session_state.current_question = None
+            st.rerun()
         return
     
     # 生成选项
@@ -1019,6 +1043,8 @@ def render_tower_mode(game: WordGame):
                 st.session_state.mastered_words.add(current_word['word'])
             else:
                 st.session_state.wrong_words.append(current_word)
+            
+            st.rerun()
 
 
 def render_root_explore(game: WordGame):
@@ -1074,9 +1100,11 @@ def render_review_mode(game: WordGame):
             if st.button(f"✅ 我记住了", key=f"review_{i}"):
                 st.session_state.wrong_words.pop(i)
                 st.session_state.mastered_words.add(word['word'])
+                st.rerun()
     
     if st.button("🗑️ 清空错题本", use_container_width=True, key="clear_review"):
         st.session_state.wrong_words = []
+        st.rerun()
 
 
 def render_speed_challenge(game: WordGame):
@@ -1102,9 +1130,11 @@ def render_speed_challenge(game: WordGame):
                 st.session_state.speed_index = 0
                 st.session_state.speed_finished = False
                 st.session_state.current_question = None
+                st.rerun()
         with col2:
             if st.button("🏠 返回主页", use_container_width=True, key="speed_home"):
                 st.session_state.game_mode = "menu"
+                st.rerun()
         
         # 显示历史最佳
         best = st.session_state.get("speed_best", 0)
@@ -1147,6 +1177,7 @@ def render_speed_challenge(game: WordGame):
         if st.button("🔄 再来一次", use_container_width=True, key="speed_retry"):
             st.session_state.speed_words = []
             st.session_state.speed_finished = True
+            st.rerun()
         return
     
     # 显示倒计时和连击
@@ -1249,6 +1280,7 @@ def render_spelling_mode(game: WordGame):
         st.warning("暂无单词数据")
         if st.button("🏠 返回主页", key="spell_no_word_home"):
             st.session_state.game_mode = "menu"
+            st.rerun()
         return
     
     correct_word = word_data['word'].lower().strip()
@@ -1270,6 +1302,7 @@ def render_spelling_mode(game: WordGame):
     with col1:
         if st.button("💡 显示首字母", disabled=st.session_state.spelling_hint_used, key="spell_hint"):
             st.session_state.spelling_hint_used = True
+            st.rerun()
     with col2:
         if st.button("🔊 显示音标", key="spell_phonetic"):
             st.info(f"音标: {word_data.get('phonetic', '无')}")
@@ -1277,6 +1310,7 @@ def render_spelling_mode(game: WordGame):
         if st.button("⏭️ 跳过本题", key="spell_skip"):
             st.session_state.wrong_words.append(word_data)
             st.session_state.spelling_word = None
+            st.rerun()
     
     # 显示提示
     if st.session_state.spelling_hint_used:
@@ -1325,11 +1359,12 @@ def render_spelling_mode(game: WordGame):
     # 下一题按钮（独立于表单）
     if st.session_state.spelling_word is None:
         if st.button("➡️ 下一题", use_container_width=True, key="spelling_next"):
-            pass  # 按钮点击会自动刷新页面，spelling_word为None会获取新单词
+            st.rerun()  # 刷新页面获取新单词
     
     st.markdown("---")
     if st.button("🏠 返回主页", use_container_width=True, key="spelling_home"):
         st.session_state.game_mode = "menu"
+        st.rerun()
 
 
 def get_custom_prizes(game: WordGame, prize_type: str = "all") -> list:
