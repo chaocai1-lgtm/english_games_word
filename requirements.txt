@@ -1,0 +1,17 @@
+# 单词魔塔探险 - Python依赖
+
+# Web框架
+streamlit>=1.28.0
+
+# Neo4j 数据库驱动
+neo4j>=5.14.0
+
+# 环境变量管理
+python-dotenv>=1.0.0
+
+# 数据处理
+pandas>=2.0.0
+
+# 可视化（词根图谱）
+pyvis>=0.3.2
+networkx>=3.1
